@@ -1,16 +1,24 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import Cart from "./components/Cart";
+import Navbar from "./components/Navbar";
 import ProductsList from "./components/ProductsList";
+import { useUserContext } from "./context/UserContext";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { nombre } = useUserContext();
 
   return (
-    <>
-      <ProductsList />
-    </>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <div className="flex flex-1 overflow-hidden">
+        <div className="w-4/5">
+          <ProductsList />
+        </div>
+        <div className="w-1/5">
+          <Cart />
+        </div>
+      </div>
+    </div>
   );
 }
 

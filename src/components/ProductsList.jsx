@@ -1,8 +1,9 @@
 import useFetchProducts from "../hooks/useFetchProducts";
+import ProductCard from "./ProductCard";
 
 const ProductsList = () => {
   const {
-    data: products,
+    data: products, //cambio el nombre por facilidad no es obligatorio cambiarlo
     loading,
     error,
   } = useFetchProducts("https://fakestoreapi.com/products");
@@ -16,17 +17,15 @@ const ProductsList = () => {
   }
 
   return (
-    <div>
+    <div className="bg-gray-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
       {products.map((product) => {
-        return (
-          <div key={product.id}>
-            <img src={product.image} alt="" />
-            <p>{product.title}</p>
-          </div>
-        );
+        return <ProductCard key={product.id} product={product} />;
       })}
     </div>
   );
 };
 
 export default ProductsList;
+
+//crear un componente que se llame ProductCard.jsx
+//este componente recibe cada producto y lo muestra en una tarjeta.
